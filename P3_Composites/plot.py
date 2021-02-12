@@ -187,8 +187,8 @@ def _cylinder_mechanics(E, P, r1, r2, L, frac_stress=np.inf):
         strain[~mask] = np.nan
         stress[~mask] = np.nan
 
-        cm1 = plt.cm.RdBu
-        cm2 = plt.cm.PRGn
+        cm1 = plt.cm.RdBu.copy()
+        cm2 = plt.cm.PRGn.copy()
 
         cm2.set_over('r')
         cm2.set_under('r')
