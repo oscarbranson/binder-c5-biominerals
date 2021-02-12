@@ -2,4 +2,5 @@ numpy==1.*
 pandas==1.*
 matplotlib==3.*
 scipy==1.*
-ipywidgets==7.*
+ipywidgets
+jupyter_contrib_nbextensions
