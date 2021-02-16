@@ -1,3 +1,4 @@
+import copy
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
@@ -187,14 +188,14 @@ def _cylinder_mechanics(E, P, r1, r2, L, frac_stress=np.inf):
         strain[~mask] = np.nan
         stress[~mask] = np.nan
 
-        cm1 = plt.cm.RdBu.copy()
-        cm2 = plt.cm.PRGn.copy()
+        cm1 = copy.copy(plt.cm.RdBu)
+        cm2 = copy.copy(plt.cm.PRGn)
 
         cm2.set_over('r')
         cm2.set_under('r')
 
-        c1 = ax1.pcolormesh(1e6 * X, 1e6 * Y, strain, cmap=cm1)
-        c2 = ax2.pcolormesh(1e6 * X, 1e6 * Y, stress * 1e-9, cmap=cm2, vmin=stresslim[0] * 1e-9, vmax=stresslim[1] * 1e-9)
+        c1 = ax1.pcolormesh(1e6 * X, 1e6 * Y, strain, cmap=cm1, shading='auto')
+        c2 = ax2.pcolormesh(1e6 * X, 1e6 * Y, stress * 1e-9, cmap=cm2, vmin=stresslim[0] * 1e-9, vmax=stresslim[1] * 1e-9, shading='auto')
         
         fig.colorbar(c1, ax=ax1)
         fig.colorbar(c2, ax=ax2)
