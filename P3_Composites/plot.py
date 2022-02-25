@@ -71,21 +71,21 @@ def _fibre_composite_frac(Ef, Em, epsilonb_fibre, epsilonb_matrix):
     fig, ax = plt.subplots(1, 1)
 
     ax.plot(Vf, calc_fracturestrength(Vf, Ef, Em, epsilonb_fibre, epsilonb_matrix))
-    ax.set_ylabel('Axial Fracture Strength ($\sigma_b$)')
+    ax.set_ylabel('Axial Fracture Strength ($\sigma_{bc}$)')
     ax.set_xlabel('Fractional Volume of Fibre ($V_f$)')
 
     ydiff = np.diff(ax.get_ylim())
     ax.axhline(Ef * epsilonb_fibre, ls='dashed', color=(0,0,0,0.5))
-    ax.text(0, Ef * epsilonb_fibre - 0.02 * ydiff, '$\sigma_{fb}$', va='top', fontsize=14)
-    ax.axhline(Em * epsilonb_fibre, ls='dashed', color=(0,0,0,0.5))
-    ax.text(1, Em * epsilonb_fibre + 0.02 * ydiff, '$\sigma_{fm}$', ha='right', fontsize=14)
+    ax.text(0, Ef * epsilonb_fibre - 0.02 * ydiff, '$\sigma_{bf}$', va='top', fontsize=14)
+    ax.axhline(Em * epsilonb_matrix, ls='dashed', color=(0,0,0,0.5))
+    ax.text(1, Em * epsilonb_matrix + 0.02 * ydiff, '$\sigma_{bm}$', ha='right', fontsize=14)
 
 def fibre_composite_fracture():
     interact(_fibre_composite_frac, 
              Ef=widgets.FloatText(120, description='$E_f$'),
              Em=widgets.FloatText(10, description='$E_m$'),
-             epsilonb_fibre=widgets.FloatText(1.2, description='$\epsilon_{fb}$'),
-             epsilonb_matrix=widgets.FloatText(1.2, description='$\epsilon_{fm}$'))
+             epsilonb_fibre=widgets.FloatText(1.2, description='$\epsilon_{bf}$'),
+             epsilonb_matrix=widgets.FloatText(1.2, description='$\epsilon_{bm}$'))
 
 
 
