@@ -14684,42 +14684,57 @@ $$</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ol>
-<li><img src="figs/axial-stress-strain.png" style="width: 25%; min-width: 400px;"></img></li>
+<li><img src="figs/axial-stress-strain.png" style="width: 60%; min-width: 800px;"></img></li>
 </ol>
+<p><p style="color:red">
+There are four distinct deformation phases in the composite: (1) elastic, (2) fibre yielding, (3) matrix yielding, and (4) fibre failure</p>
 <p><p style="color:red"></p>
 <ol>
-<li>In phase 1, the composite is in the elastic region with a slope set by the rule-of-mixtures $E$:</li>
+<li>Elastic.</li>
 </ol>
+<p><p style="color:red">
+The composite is in the elastic region with a slope set by the rule-of-mixtures $E$:</p>
 $$
-\sigma_C = E_C \epsilon_C
+\sigma = E \epsilon
 $$<p><p style="color:red">
 This phase lasts until the strain in the composite exceeds the yield strain of the fibres. Since the strain in each material is the same in the axial direction and the fibre has the lower failure strain, the yield stress at the end of phase 1 may be calculated as the point at which the strain in the composite exceeds the failure strain of the fibre:</p>
 $$
-\sigma^{yld}_C = \epsilon^{yld}_F E_C = f_F \sigma^{yld}_F + f_M \epsilon^{yld}_F E_M \\
-$$<p><p style="color:red">
-We then enter phase 2, where we have surpassed the elastic limit of the fibres and enter ductile fibre deformation where, because we are approximating this as $0.1E$, the slope is given by:</p>
-$$
-\sigma_C = 0.1 \epsilon_C E_C
-$$<p><p style="color:red">
-This continues until the strain in the composite exceeds the ultimate strain of the fibres. The stress at the end of phase 2 is given by:</p>
-$$
-\sigma^{ult}_C = \sigma^{yld}_C + \left(\epsilon^{ult}_F - \frac{\sigma^{yld}_C}{E_C} \right) 0.1 E_C
-
-$$<p><p style="color:red">
-In phase 3 the fibres are broken and provide no structural reinforcement to the composite, so the properties of the composite depend entirely on the matrix. However, because the fibres are broken they do not experience any strain beyond this point, and all the strain must be accommodated by the matrix. Because the volume of the matrix is less than the volume of the composite, the strain in the matrix must be proportionally greater than the strain the composite. The ultimate strain of the composite is therefore given by:</p>
-$$
-\epsilon^{ult}_C = \epsilon^{ult}_M f_M
-$$<p><p style="color:red">
-However, this only holds if the strain at the fibre breaking point is lower than this value, therefore the ultimate strain of the composite is:</p>
-$$
-\max(\epsilon^{ult}_C, \epsilon^{ult}_F)
+\epsilon_C^{yld,1} = \epsilon_F^{yld} \\
+\sigma^{yld,1}_C = \epsilon^{yld}_F E_C^1 = f_F \sigma^{yld}_F + f_M \epsilon^{yld}_F E_M \\
 $$<p><p style="color:red"></p>
 <ol>
-<li>Integral of the stress-strain curve, which changes between each phase of deformation:</li>
+<li>Fibre Yielding</li>
 </ol>
+<p><p style="color:red">
+When we have surpassed the elastic limit of the fibres, the properties of the composite can be approximated as a mixture of elastic matrix deformation and ductile fibre deformation. Because we are approximating ductile deformation as $0.1E$, we can write::</p>
 $$
-K = \int_0^{\epsilon_F^{yld}} E_C \epsilon ~d\epsilon + \int_{\epsilon_F^{yld}}^{\epsilon_F^{ult}} E_C \epsilon_F^{yld} + 0.1 E_C \epsilon ~ d\epsilon + \left[\int_{\epsilon_F^{ult}}^{f_M \epsilon_M^{ult}} \sigma_C^{ult} ~ d\epsilon \right]\\
-K = \frac{E_C [\epsilon_F^{yld}]^2}{2} + E_C \epsilon_F^{yld} (\epsilon_F^{ult} - \epsilon_F^{yld}) + \frac{0.1 E_C}{2} ([\epsilon_F^{ult}]^2 - [\epsilon_F^{yld}]^2) + \left[ \sigma_C^{ult} (f_M \epsilon_M^{ult} - \epsilon_F^{ult}) \right]
+E_C^2 = 0.1 E_F (1 - f_M) + E_M f_M
+$$<p><p style="color:red">
+The composite continues to deflect until the yield strain in the matrix is reached:</p>
+$$
+\epsilon_C^{yld,2} = \epsilon_F^{yld} \\
+\sigma_C^{yld,2} = \sigma_C^{yld,1} + E_C^2 (\epsilon_C^{yld,2} - \epsilon_C^{yld,1})
+$$<p><p style="color:red"></p>
+<ol>
+<li>Matrix Yielding</li>
+</ol>
+<p><p style="color:red">
+At this point the slope of the line is described by:</p>
+$$
+E_C^3 = 0.1 E_F (1 - f_M) + 0.1 E_M f_M
+$$<p><p style="color:red">
+This continues until the strain in the composite exceeds the ultimate strain of the fibres, when the fibres break.</p>
+$$
+\epsilon_C^{ult,1} = \epsilon_F^{ult} \\
+\sigma^{ult,1}_C = \sigma^{yld,2}_C + E_C^{ult,1} ( \epsilon_C^3 - \epsilon_C^{yld,2} )
+$$<p><p style="color:red"></p>
+<ol>
+<li>Fibre Failure</li>
+</ol>
+<p><p style="color:red">
+After the fibres are broken they provide no structural reinforcement to the composite, so the properties of the composite depend entirely on the matrix. However, because the fibres are broken they do not experience any strain beyond this point, and all the strain must be accommodated by the matrix. Because the volume of the matrix is less than the volume of the composite, the strain in the matrix must be proportionally greater than the strain the composite. The ultimate strain of the composite is therefore given by:</p>
+$$
+\epsilon^{ult,2}_C = \epsilon^{ult}_M f_M
 $$
 </div>
 </div>
@@ -14774,7 +14789,7 @@ You can change $E$ for each material to see how the properties of the composite 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plot</span>
@@ -14927,7 +14942,7 @@ The breaking stress for the composite is then the maximum of either expression f
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plot</span>
@@ -15049,7 +15064,7 @@ Have a look how the $M$ changes as a function of the position of $P$ in the plot
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">moment_distance</span><span class="p">()</span>
@@ -15226,7 +15241,7 @@ In a brittle material this failure leads to fracture, and in a tough material it
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">cylinder_mechanics</span><span class="p">()</span>
